@@ -16,5 +16,9 @@
     {
         "silverstripe/framework": "3.1.*",
         "composer/installers": "*"
+    },
+
+    "support": {
+        "issues": "https://github.com/webbuilders-group/silverstripe-frontendgridfield/issues"
     }
 }
