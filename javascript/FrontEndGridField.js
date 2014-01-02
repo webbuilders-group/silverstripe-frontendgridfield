@@ -43,7 +43,41 @@
             }
         });
         
-        $('.ss-gridfield a.edit-link, .ss-gridfield a.new-link').entwine({
+        
+        //Row Click
+        $('.ss-gridfield .ss-gridfield-item:not(.ss-gridfield-no-items) td').entwine({
+            /**
+             * Function: onclick
+             */
+            onclick: function(e) {
+                var editButton=$(this).parent().find('a.edit-link, a.view-link');
+                var self=this, id='ss-ui-dialog-'+this.getGridField().getUUID();
+                var dialog=$('#'+id);
+                
+                if(!dialog.length) {
+                    dialog=$('<div class="ss-ui-dialog" id="'+id+'" />');
+                    $('body').append(dialog);
+                }
+                
+                var extraClass=(this.data('popupclass') ? this.data('popupclass'):'');
+                dialog.ssdialog({
+                                title: editButton.text(),
+                                iframeUrl: editButton.attr('href'),
+                                autoOpen: true,
+                                dialogExtraClass: extraClass,
+                                close: function(e, ui) {
+                                    self.getGridField().reload();
+                                }
+                            });
+                
+                
+                e.preventDefault();
+                return false;
+            }
+        });
+        
+        //View/Edit Button Click
+        $('.ss-gridfield a.edit-link, .ss-gridfield a.view-link').entwine({
             /**
              * Function: onclick
              */
@@ -58,6 +92,7 @@
                 
                 var extraClass=(this.data('popupclass') ? this.data('popupclass'):'');
                 dialog.ssdialog({
+                                title: $(this).text(),
                                 iframeUrl: this.attr('href'),
                                 autoOpen: true,
                                 dialogExtraClass: extraClass,
