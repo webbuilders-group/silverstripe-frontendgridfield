@@ -77,7 +77,7 @@
         });
         
         //View/Edit Button Click
-        $('.ss-gridfield a.edit-link, .ss-gridfield a.view-link').entwine({
+        $('.ss-gridfield a.edit-link, .ss-gridfield a.view-link, .ss-gridfield a.new-link').entwine({
             /**
              * Function: onclick
              */
