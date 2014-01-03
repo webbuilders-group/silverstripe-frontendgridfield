@@ -60,7 +60,7 @@
                 }
                 
                 var extraClass=(this.data('popupclass') ? this.data('popupclass'):'');
-                dialog.ssdialog({
+                dialog.fegfdialog({
                                 title: editButton.text(),
                                 iframeUrl: editButton.attr('href'),
                                 autoOpen: true,
@@ -91,7 +91,7 @@
                 }
                 
                 var extraClass=(this.data('popupclass') ? this.data('popupclass'):'');
-                dialog.ssdialog({
+                dialog.fegfdialog({
                                 title: $(this).text(),
                                 iframeUrl: this.attr('href'),
                                 autoOpen: true,
@@ -106,5 +106,22 @@
                 return false;
             }
         });
+    });
+    
+    $.widget("fegf.fegfdialog", $.ssui.ssdialog, {
+        _resizeIframe: function() {
+            //Call Parent
+            $.ssui.ssdialog.prototype._resizeIframe.call(this);
+            
+            
+            var iframe=this.element.children('iframe');
+            var titlebar=jQuery(this.uiDialog).find('.ui-dialog-titlebar');
+            
+            
+            //Resize the iframe taking into account the title bar
+            if(titlebar.length>0 && titlebar.is(':visible')) {
+                iframe.attr('height', iframe.attr('height')-titlebar.outerHeight());
+            }
+        }
     });
 })(jQuery);
