@@ -23,7 +23,7 @@
         });
         
         
-        $('.ss-gridfield button.gridfield-button-delete').entwine({
+        $('.ss-gridfield:not(.ss-gridfield-editable) button.gridfield-button-delete').entwine({
             /**
              * Function: onclick
              */
@@ -45,7 +45,7 @@
         
         
         //Row Click
-        $('.ss-gridfield .ss-gridfield-item:not(.ss-gridfield-no-items) td').entwine({
+        $('.ss-gridfield:not(.ss-gridfield-editable) .ss-gridfield-item:not(.ss-gridfield-no-items) td').entwine({
             /**
              * Function: onclick
              */
