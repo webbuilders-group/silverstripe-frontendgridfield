@@ -140,6 +140,10 @@ form table.ss-gridfield-table .ui-button .ui-icon.btn-icon-cross-circle {
     background: url(./../images/icons/cross-circle.png) no-repeat;
 }
 
+form .ss-gridfield .ui-button .ui-icon.btn-icon-chain--plus {
+    background: url(./../images/icons/chain--plus.png) no-repeat;
+}
+
 form table.ss-gridfield-table tr th input.ss-gridfield-sort {
     width: 100%;
     max-width: 512px;
