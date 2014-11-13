@@ -11,13 +11,13 @@
             "role": "Developer"
         }
     ],
-
-    "require":
-    {
+    "require": {
         "silverstripe/framework": "3.1.*",
         "composer/installers": "*"
     },
-
+    "extra": {
+        "installer-name": "frontendgridfield"
+    },
     "support": {
         "issues": "https://github.com/webbuilders-group/silverstripe-frontendgridfield/issues"
     }
