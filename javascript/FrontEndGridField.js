@@ -61,7 +61,8 @@
                                     self.getGridField().reload();
                                 }
                             });
-                
+                //store a global reference
+                window.fegf_dialog = dialog;
                 
                 e.preventDefault();
                 return false;
@@ -92,7 +93,8 @@
                                     self.getGridField().reload();
                                 }
                             });
-                
+                //store a global reference
+                window.fegf_dialog = dialog;
                 
                 e.preventDefault();
                 return false;

@@ -39,7 +39,9 @@ class FrontEndGridFieldDetailForm_ItemRequest extends GridFieldDetailForm_ItemRe
     public function edit($request) {
         $controller=$this->getToplevelController();
         $form=$this->ItemEditForm($this->gridField, $request);
-        
+
+        Requirements::javascript(THIRDPARTY_DIR . '/jquery/jquery.js');
+        Requirements::javascript(FRONTEND_GRIDFIELD_BASE.'/javascript/closeparentdialog.js');
         
         return $controller->customise(array(
                                     'Title'=>($this->record && $this->record->ID ? $this->record->Title:sprintf(_t('GridField.NewRecord', 'New %s'), $this->record->i18n_singular_name())),
