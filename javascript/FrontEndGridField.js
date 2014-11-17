@@ -6,6 +6,14 @@
             onmatch: function() {
                 this._super();
                 this.setUUID(new Date().getTime());
+            },
+            
+            closeDialog: function() {
+                var dialog=$('#ss-ui-dialog-'+(this.getUUID()));
+                
+                if(dialog.length>0) {
+                    dialog.fegfdialog('close');
+                }
             }
         });
         
@@ -23,19 +31,25 @@
         });
         
         
-        $('.ss-gridfield:not(.ss-gridfield-editable) button.gridfield-button-delete').entwine({
+        $('.frontendgrid.ss-gridfield:not(.ss-gridfield-editable) .col-buttons .action.gridfield-button-delete').entwine({
             /**
              * Function: onclick
              */
             onclick: function(e) {
-                // Confirmation on delete. 
+                // Confirmation on delete
                 if(!confirm(ss.i18n._t('TABLEFIELD.DELETECONFIRMMESSAGE'))) {
                     e.preventDefault();
                     return false;
                 }
                 
                 if(!this.is(':disabled')) {
-                    this.parents('form').trigger('submit', [this]);
+                    var filterState='show'; //filterstate should equal current state.
+                    
+                    if(this.hasClass('ss-gridfield-button-close') || !(this.closest('.ss-gridfield').hasClass('show-filter'))){
+                        filterState='hidden';
+                    }
+                    
+                    this.getGridField().reload({data: [{name: this.attr('name'), value: this.val(), filter: filterState}]});
                 }
                 
                 e.preventDefault();
