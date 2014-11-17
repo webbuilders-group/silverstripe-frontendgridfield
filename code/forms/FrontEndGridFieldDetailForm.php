@@ -48,39 +48,39 @@ class FrontEndGridFieldDetailForm_ItemRequest extends GridFieldDetailForm_ItemRe
     }
     
     /**
-	 * Disabled, the front end does not use breadcrumbs to remember the paths
-	 */
-	public function Breadcrumbs($unlinked = false) {
-		return;
-	}
-	
-	public function doDelete($data, $form) {
-	    $title=$this->record->Title;
-	    try {
-	        if(!$this->record->canDelete()) {
-	            throw new ValidationException(_t('GridFieldDetailForm.DeletePermissionsFailure', "No delete permissions"), 0);
-	        }
-	    
-	        $this->record->delete();
-	    }catch(ValidationException $e) {
-	        $form->sessionMessage($e->getResult()->message(), 'bad');
-	        return Controller::curr()->redirectBack();
-	    }
-	    
-	    $message=sprintf(_t('GridFieldDetailForm.Deleted', 'Deleted %s %s'), $this->record->i18n_singular_name(), htmlspecialchars($title, ENT_QUOTES));
-	    
-	    $toplevelController=$this->getToplevelController();
-	    if($toplevelController && $toplevelController instanceof LeftAndMain) {
-	        $backForm = $toplevelController->getEditForm();
-	        $backForm->sessionMessage($message, 'good');
-	    }else {
-	        $form->sessionMessage($message, 'good');
-	    }
-	    
-	    
-	    //Remove all requirements
-	    Requirements::clear();
-	    
+     * Disabled, the front end does not use breadcrumbs to remember the paths
+     */
+    public function Breadcrumbs($unlinked = false) {
+        return;
+    }
+    
+    public function doDelete($data, $form) {
+        $title=$this->record->Title;
+        try {
+            if(!$this->record->canDelete()) {
+                throw new ValidationException(_t('GridFieldDetailForm.DeletePermissionsFailure', "No delete permissions"), 0);
+            }
+        
+            $this->record->delete();
+        }catch(ValidationException $e) {
+            $form->sessionMessage($e->getResult()->message(), 'bad');
+            return Controller::curr()->redirectBack();
+        }
+        
+        $message=sprintf(_t('GridFieldDetailForm.Deleted', 'Deleted %s %s'), $this->record->i18n_singular_name(), htmlspecialchars($title, ENT_QUOTES));
+        
+        $toplevelController=$this->getToplevelController();
+        if($toplevelController && $toplevelController instanceof LeftAndMain) {
+            $backForm = $toplevelController->getEditForm();
+            $backForm->sessionMessage($message, 'good');
+        }else {
+            $form->sessionMessage($message, 'good');
+        }
+        
+        
+        //Remove all requirements
+        Requirements::clear();
+        
         return $this->customise(array('GridFieldID'=>$this->gridField->ID()))->renderWith('FrontEndGridField_deleted');
     }
 }
