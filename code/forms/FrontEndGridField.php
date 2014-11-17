@@ -6,7 +6,7 @@ class FrontEndGridField extends GridField {
      */
     public function FieldHolder($properties=array()) {
         Requirements::block(FRAMEWORK_DIR.'/css/GridField.css');
-        Requirements::css(FRONTEND_GRIDFIELD_BASE.'/css/FrontEndGridField.css');
+        Requirements::themedCSS('FrontEndGridField', 'frontendgridfield');
         
         Requirements::add_i18n_javascript(FRAMEWORK_DIR.'/javascript/lang');
         Requirements::javascript(THIRDPARTY_DIR.'/jquery-ui/jquery-ui.js');
