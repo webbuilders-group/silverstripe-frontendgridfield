@@ -22,22 +22,14 @@
             }
         });
         
-        
-        $('.ss-gridfield:not(.ss-gridfield-editable) button.gridfield-button-delete').entwine({
+        $('.ss-gridfield:not(.ss-gridfield-editable) .col-buttons .action.gridfield-button-delete, .cms-edit-form .Actions button.action.action-delete').entwine({
             /**
              * Function: onclick
              */
             onclick: function(e) {
-                // Confirmation on delete. 
-                if(!confirm(ss.i18n._t('TABLEFIELD.DELETECONFIRMMESSAGE'))) {
-                    e.preventDefault();
-                    return false;
-                }
+                this._super(e);
                 
-                if(!this.is(':disabled')) {
-                    this.parents('form').trigger('submit', [this]);
-                }
-                
+                //prevent parent td selector events from being fired
                 e.preventDefault();
                 return false;
             }
