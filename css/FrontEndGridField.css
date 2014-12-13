@@ -28,6 +28,7 @@ form .ss-gridfield .right .pagination-records-number { font-size: 1.0em; padding
 form .ss-gridfield .left { float: left; }
 form .ss-gridfield .left > * { margin-right: 8px; float: left; font-size: 14.4px; }
 form .ss-gridfield .ss-gridfield-buttonrow { font-size: 14.4px; }
+form .ss-gridfield .ss-gridfield-buttonrow p { margin: 0; }
 form .ss-gridfield .grid-levelup { text-indent: -9999em; margin-bottom: 6px; }
 form .ss-gridfield .grid-levelup a.list-parent-link { background: transparent url(../../framework/images/gridfield-level-up.png) no-repeat 0 0; display: block; }
 form .ss-gridfield .add-existing-autocompleter span { float: left; display: -moz-inline-stack; display: inline-block; vertical-align: top; *vertical-align: auto; zoom: 1; *display: inline; }
@@ -142,6 +143,14 @@ form table.ss-gridfield-table .ui-button .ui-icon.btn-icon-cross-circle {
 
 form .ss-gridfield .ui-button .ui-icon.btn-icon-chain--plus {
     background: url(./../images/icons/chain--plus.png) no-repeat;
+}
+
+form .ss-gridfield .ui-button .ui-icon.btn-icon-chain--plus {
+    background: url(./../images/icons/chain--plus.png) no-repeat;
+}
+
+form .ss-gridfield-buttonrow .btn-icon-download-csv {
+    background: url(./../images/icons/download-csv.png) no-repeat;
 }
 
 form table.ss-gridfield-table tr th input.ss-gridfield-sort {
