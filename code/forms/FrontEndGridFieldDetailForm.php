@@ -83,5 +83,13 @@ class FrontEndGridFieldDetailForm_ItemRequest extends GridFieldDetailForm_ItemRe
         
         return $this->customise(array('GridFieldID'=>$this->gridField->ID()))->renderWith('FrontEndGridField_deleted');
     }
+    
+    /**
+     * Wrapper for redirectBack()
+     * @see Controller::redirectBack()
+     */
+    public function redirectBack() {
+        return Controller::curr()->redirectBack();
+    }
 }
 ?>
