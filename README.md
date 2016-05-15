@@ -6,7 +6,7 @@ Wraps gridfield adding support for using it on the front-end of a site.
 * Ed Chipman ([UndefinedOffset](https://github.com/UndefinedOffset))
 
 ## Requirements
-* SilverStripe CMS 3.1.x
+* SilverStripe Framework 3.1.x+
 
 
 ## Installation
