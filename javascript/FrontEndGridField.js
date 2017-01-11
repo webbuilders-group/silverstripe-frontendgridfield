@@ -59,7 +59,7 @@
         
         
         //Row Click
-        $('.ss-gridfield:not(.ss-gridfield-editable) .ss-gridfield-item:not(.ss-gridfield-no-items) td').entwine({
+        $('.ss-gridfield:not(.ss-gridfield-editable) .ss-gridfield-item:not(.ss-gridfield-no-items) td:not(.col-buttons)').entwine({
             /**
              * Function: onclick
              */
@@ -85,6 +85,15 @@
 	                    }
 	                });
                 }                
+                e.preventDefault();
+                return false;
+            }
+        });
+        $('.ss-gridfield:not(.ss-gridfield-editable) .ss-gridfield-item:not(.ss-gridfield-no-items) td.col-buttons').entwine({
+            /**
+             * Function: onclick
+             */
+            onclick: function(e) {
                 e.preventDefault();
                 return false;
             }
