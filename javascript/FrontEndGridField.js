@@ -65,26 +65,26 @@
              */
             onclick: function(e) {
                 var editButton=$(this).parent().find('a.edit-link, a.view-link');
-                var self=this, id='ss-ui-dialog-'+this.getGridField().getUUID();
-                var dialog=$('#'+id);
-                
-                if(!dialog.length) {
-                    dialog=$('<div class="ss-ui-dialog" id="'+id+'" />');
-                    $('body').append(dialog);
-                }
-                
-                var extraClass=(this.data('popupclass') ? this.data('popupclass'):'');
-                dialog.fegfdialog({
-                                title: editButton.text(),
-                                iframeUrl: editButton.attr('href'),
-                                autoOpen: true,
-                                dialogExtraClass: extraClass,
-                                close: function(e, ui) {
-                                    self.getGridField().reload();
-                                }
-                            });
-                
-                
+                if (editButton.length) {
+	                var self=this, id='ss-ui-dialog-'+this.getGridField().getUUID();
+	                var dialog=$('#'+id);
+	                
+	                if(!dialog.length) {
+	                    dialog=$('<div class="ss-ui-dialog" id="'+id+'" />');
+	                    $('body').append(dialog);
+	                }
+	                
+	                var extraClass=(this.data('popupclass') ? this.data('popupclass'):'');
+	                dialog.fegfdialog({
+	                    title: editButton.text(),
+	                    iframeUrl: editButton.attr('href'),
+	                    autoOpen: true,
+	                    dialogExtraClass: extraClass,
+	                    close: function(e, ui) {
+	                        self.getGridField().reload();
+	                    }
+	                });
+                }                
                 e.preventDefault();
                 return false;
             }
@@ -106,15 +106,14 @@
                 
                 var extraClass=(this.data('popupclass') ? this.data('popupclass'):'');
                 dialog.fegfdialog({
-                                title: $(this).text(),
-                                iframeUrl: this.attr('href'),
-                                autoOpen: true,
-                                dialogExtraClass: extraClass,
-                                close: function(e, ui) {
-                                    self.getGridField().reload();
-                                }
-                            });
-                
+                    title: $(this).text(),
+                    iframeUrl: this.attr('href'),
+                    autoOpen: true,
+                    dialogExtraClass: extraClass,
+                    close: function(e, ui) {
+                        self.getGridField().reload();
+                    }
+                });
                 
                 e.preventDefault();
                 return false;
@@ -127,10 +126,8 @@
             //Call Parent
             $.ssui.ssdialog.prototype._resizeIframe.call(this);
             
-            
             var iframe=this.element.children('iframe');
             var titlebar=jQuery(this.uiDialog).find('.ui-dialog-titlebar');
-            
             
             //Resize the iframe taking into account the title bar
             if(titlebar.length>0 && titlebar.is(':visible')) {

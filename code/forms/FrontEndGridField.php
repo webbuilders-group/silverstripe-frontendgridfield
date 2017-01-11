@@ -8,7 +8,7 @@ class FrontEndGridField extends GridField {
         Requirements::block(FRAMEWORK_DIR.'/css/GridField.css');
         Requirements::themedCSS('FrontEndGridField', FRONTEND_GRIDFIELD_BASE);
         
-        Requirements::add_i18n_javascript(FRAMEWORK_DIR.'/javascript/lang');        
+        Requirements::add_i18n_javascript(FRAMEWORK_DIR.'/javascript/lang');
         Requirements::javascript(THIRDPARTY_DIR . '/jquery/jquery.js');
         Requirements::javascript(THIRDPARTY_DIR.'/jquery-ui/jquery-ui.js');
         Requirements::javascript(FRAMEWORK_ADMIN_DIR.'/javascript/ssui.core.js');
