@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <title>$Title.XML</title>
         <% base_tag %>
@@ -8,7 +8,7 @@
         <% require themedCSS(typography) %>
         <% require themedCSS(form) %>
     </head>
-    <body class="typography">
+    <body class="typography gridfield-detail-form">
         <h2>$Title.XML</h2>
         
         $ItemEditForm
