@@ -20,5 +20,8 @@
     },
     "support": {
         "issues": "https://github.com/webbuilders-group/silverstripe-frontendgridfield/issues"
+    },
+    "suggest": {
+        "webbuilders-group/silverstripe-responsivegridfield": "Responsive addon for frontendgridfield that makes a SilverStripe GridField work better on various screensizes."
     }
 }
