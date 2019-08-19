@@ -1,4 +1,12 @@
 <?php
+namespace WebbuildersGroup\FrontendGridField\Forms\GridField;
+
+use SilverStripe\Forms\GridField\GridFieldConfig_Base;
+use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
+use SilverStripe\Forms\GridField\GridFieldConfig_RecordViewer;
+use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
+use SilverStripe\Forms\GridField\GridFieldDetailForm;
+
 class FrontEndGridFieldConfig_Base extends GridFieldConfig_Base {
     /**
      * @param {int} $itemsPerPage How many items per page should show up
@@ -6,7 +14,7 @@ class FrontEndGridFieldConfig_Base extends GridFieldConfig_Base {
     public function __construct($itemsPerPage=null) {
         parent::__construct($itemsPerPage);
         
-        $this->removeComponentsByType('GridFieldDetailForm')->addComponent(new FrontEndGridFieldDetailForm());
+        $this->removeComponentsByType(GridFieldDetailForm::class)->addComponent(new FrontEndGridFieldDetailForm());
     }
     
 }
@@ -18,7 +26,7 @@ class FrontEndGridFieldConfig_RecordViewer extends GridFieldConfig_RecordViewer 
     public function __construct($itemsPerPage=null) {
         parent::__construct($itemsPerPage);
         
-        $this->removeComponentsByType('GridFieldDetailForm')->addComponent(new FrontEndGridFieldDetailForm());
+        $this->removeComponentsByType(GridFieldDetailForm::class)->addComponent(new FrontEndGridFieldDetailForm());
     }
 }
 
@@ -29,7 +37,7 @@ class FrontEndGridFieldConfig_RecordEditor extends GridFieldConfig_RecordEditor 
     public function __construct($itemsPerPage=null) {
         parent::__construct($itemsPerPage);
         
-        $this->removeComponentsByType('GridFieldDetailForm')->addComponent(new FrontEndGridFieldDetailForm());
+        $this->removeComponentsByType(GridFieldDetailForm::class)->addComponent(new FrontEndGridFieldDetailForm());
     }
 }
 
@@ -40,7 +48,7 @@ class FrontEndGridFieldConfig_RelationEditor extends GridFieldConfig_RelationEdi
     public function __construct($itemsPerPage=null) {
         parent::__construct($itemsPerPage);
         
-        $this->removeComponentsByType('GridFieldDetailForm')->addComponent(new FrontEndGridFieldDetailForm());
+        $this->removeComponentsByType(GridFieldDetailForm::class)->addComponent(new FrontEndGridFieldDetailForm());
     }
 }
 ?>

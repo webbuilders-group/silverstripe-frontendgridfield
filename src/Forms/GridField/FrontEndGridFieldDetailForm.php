@@ -1,6 +1,23 @@
 <?php
+namespace WebbuildersGroup\FrontendGridField\Forms\GridField;
+
+use SilverStripe\Admin\LeftAndMain;
+use SilverStripe\Control\Controller;
+use SilverStripe\Control\Session;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\Form;
+use SilverStripe\Forms\FormAction;
+use SilverStripe\Forms\HiddenField;
+use SilverStripe\Forms\LiteralField;
+use SilverStripe\Forms\GridField\GridFieldDetailForm;
+use SilverStripe\Forms\GridField\GridFieldDetailForm_ItemRequest;
+use SilverStripe\ORM\HasManyList;
+use SilverStripe\ORM\ManyManyList;
+use SilverStripe\ORM\ValidationException;
+use SilverStripe\View\Requirements;
+
 class FrontEndGridFieldDetailForm extends GridFieldDetailForm {
-    protected $template='FrontEndGridFieldDetailForm';
+    protected $template=FrontEndGridFieldDetailForm::class;
 }
 
 class FrontEndGridFieldDetailForm_ItemRequest extends GridFieldDetailForm_ItemRequest {

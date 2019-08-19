@@ -1,20 +1,25 @@
 <?php
+namespace WebbuildersGroup\FrontendGridField\Forms\GridField;
+
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\View\Requirements;
+
 class FrontEndGridField extends GridField {
     /**
      * Returns the whole gridfield rendered with all the attached components
      * @return string
      */
     public function FieldHolder($properties=array()) {
-        Requirements::block(FRAMEWORK_DIR.'/css/GridField.css');
-        Requirements::themedCSS('FrontEndGridField', FRONTEND_GRIDFIELD_BASE);
+        Requirements::block('silverstripe/admin: css/GridField.css');
+        Requirements::themedCSS(FrontEndGridField::class, FRONTEND_GRIDFIELD_BASE);
         
-        Requirements::add_i18n_javascript(FRAMEWORK_DIR.'/javascript/lang');
-        Requirements::javascript(THIRDPARTY_DIR . '/jquery/jquery.js');
-        Requirements::javascript(THIRDPARTY_DIR.'/jquery-ui/jquery-ui.js');
-        Requirements::javascript(FRAMEWORK_ADMIN_DIR.'/javascript/ssui.core.js');
-        Requirements::javascript(FRAMEWORK_ADMIN_DIR.'/javascript/lib.js');
-        Requirements::javascript(THIRDPARTY_DIR.'/jquery-entwine/dist/jquery.entwine-dist.js');
-        Requirements::javascript(FRONTEND_GRIDFIELD_BASE.'/javascript/FrontEndGridField.js');
+        Requirements::add_i18n_javascript('silverstripe/admin: javascript/lang');
+        Requirements::javascript('silverstripe/admin: jquery/jquery.js');
+        Requirements::javascript('silverstripe/admin: jquery-ui/jquery-ui.js');
+        Requirements::javascript('silverstripe/admin: javascript/ssui.core.js');
+        Requirements::javascript('silverstripe/admin: javascript/lib.js');
+        Requirements::javascript('silverstripe/admin: jquery-entwine/dist/jquery.entwine-dist.js');
+        Requirements::javascript('webbuilders-group/silverstripe-frontendgridfield: javascript/FrontEndGridField.js');
         
         
         return parent::FieldHolder();
