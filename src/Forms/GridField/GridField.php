@@ -4,12 +4,14 @@ namespace WebbuildersGroup\FrontEndGridField\Forms\GridField;
 use SilverStripe\Forms\GridField\GridField as SS_GridField;
 use SilverStripe\View\Requirements;
 
-class GridField extends SS_GridField {
+class GridField extends SS_GridField
+{
     /**
      * Returns the whole gridfield rendered with all the attached components
      * @return string
      */
-    public function FieldHolder($properties=array()) {
+    public function FieldHolder($properties = [])
+    {
         Requirements::block('silverstripe/admin: css/GridField.css');
         Requirements::themedCSS(FrontEndGridField::class, FRONTEND_GRIDFIELD_BASE);
         
@@ -25,4 +27,3 @@ class GridField extends SS_GridField {
         return parent::FieldHolder();
     }
 }
-?>

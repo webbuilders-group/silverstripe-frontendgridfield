@@ -16,57 +16,60 @@ use SilverStripe\ORM\ManyManyList;
 use SilverStripe\ORM\ValidationException;
 use SilverStripe\View\Requirements;
 
-class GridFieldDetailForm extends SS_GridFieldDetailForm {
-    protected $template=FrontEndGridFieldDetailForm::class;
+class GridFieldDetailForm extends SS_GridFieldDetailForm
+{
+    protected $template = FrontEndGridFieldDetailForm::class;
 }
 
-class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest {
-    private static $allowed_actions=array(
+class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
+{
+    private static $allowed_actions = [
                                         'view',
                                         'edit',
                                         'ItemEditForm'
-                                    );
+                                    ];
 
     /**
      * Builds an item edit form. The arguments to getFrontEndFields() are the popupController and popupFormName, however this is an experimental API and may change.
      * @return Form
      */
-    public function ItemEditForm() {
-        $list=$this->gridField->getList();
+    public function ItemEditForm()
+    {
+        $list = $this->gridField->getList();
         
-        if(empty($this->record)) {
-            $controller=$this->getToplevelController();
-            $noActionURL=$controller->removeAction($_REQUEST['url']);
+        if (empty($this->record)) {
+            $controller = $this->getToplevelController();
+            $noActionURL = $controller->removeAction($_REQUEST['url']);
             
             $controller->getResponse()->removeHeader('Location');   //clear the existing redirect
             
             return $controller->redirect($noActionURL, 302);
         }
 
-        $canView=$this->record->canView();
-        $canEdit=$this->record->canEdit();
-        $canDelete=$this->record->canDelete();
-        $canCreate=$this->record->canCreate();
+        $canView = $this->record->canView();
+        $canEdit = $this->record->canEdit();
+        $canDelete = $this->record->canDelete();
+        $canCreate = $this->record->canCreate();
 
-        if(!$canView) {
+        if (!$canView) {
             return $this->getToplevelController()->httpError(403);
         }
         
-        $actions=new FieldList();
-        if($this->record->ID!==0) {
-            if($canEdit) {
+        $actions = new FieldList();
+        if ($this->record->ID !== 0) {
+            if ($canEdit) {
                 $actions->push(FormAction::create('doSave', _t('GridFieldDetailForm.Save', 'Save'))
                                                 ->setUseButtonTag(true)
                                                 ->addExtraClass('ss-ui-action-constructive')
                                                 ->setAttribute('data-icon', 'accept'));
             }
             
-            if($canDelete) {
+            if ($canDelete) {
                 $actions->push(FormAction::create('doDelete', _t('GridFieldDetailForm.Delete', 'Delete'))
                                                 ->setUseButtonTag(true)
                                                 ->addExtraClass('ss-ui-action-destructive action-delete'));
             }
-        }else { // adding new record
+        } else { // adding new record
             //Change the Save label to 'Create'
             $actions->push(FormAction::create('doSave', _t('GridFieldDetailForm.Create', 'Create'))
                                             ->setUseButtonTag(true)
@@ -75,9 +78,9 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
             
             // Add a Cancel link which is a button-like link and link back to one level up.
             $curmbs = $this->Breadcrumbs();
-            if($curmbs && $curmbs->count()>=2){
-                $one_level_up = $curmbs->offsetGet($curmbs->count()-2);
-                $text=sprintf(
+            if ($curmbs && $curmbs->count() >= 2) {
+                $one_level_up = $curmbs->offsetGet($curmbs->count() - 2);
+                $text = sprintf(
                     "<a class=\"%s\" href=\"%s\">%s</a>",
                     "crumb ss-ui-button ss-ui-action-destructive cms-panel-link ui-corner-all", // CSS classes
                     $one_level_up->Link, // url
@@ -90,23 +93,23 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
         
         // If we are creating a new record in a has-many list, then
         // pre-populate the record's foreign key.
-        if($list instanceof HasManyList && !$this->record->isInDB()) {
-            $key=$list->getForeignKey();
-            $id=$list->getForeignID();
-            $this->record->$key=$id;
+        if ($list instanceof HasManyList && !$this->record->isInDB()) {
+            $key = $list->getForeignKey();
+            $id = $list->getForeignID();
+            $this->record->$key = $id;
         }
         
-        $fields=$this->component->getFields();
-        if(!$fields) {
-            $fields=($this->record->hasMethod('getFrontEndFields') ? $this->record->getFrontEndFields():$this->record->getCMSFields());
+        $fields = $this->component->getFields();
+        if (!$fields) {
+            $fields = ($this->record->hasMethod('getFrontEndFields') ? $this->record->getFrontEndFields() : $this->record->getCMSFields());
         }
         
         // If we are creating a new record in a has-many list, then
         // Disable the form field as it has no effect.
-        if($list instanceof HasManyList) {
-            $key=$list->getForeignKey();
+        if ($list instanceof HasManyList) {
+            $key = $list->getForeignKey();
             
-            if($field=$fields->dataFieldByName($key)) {
+            if ($field = $fields->dataFieldByName($key)) {
                 $fields->makeFieldReadonly($field);
             }
         }
@@ -116,7 +119,7 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
         // rather than relying on session which can have been rewritten
         // by the user having another tab open
         // see LeftAndMain::currentPageID
-        if($this->controller->hasMethod('currentPageID') && $this->controller->currentPageID()) {
+        if ($this->controller->hasMethod('currentPageID') && $this->controller->currentPageID()) {
             $fields->push(new HiddenField('CMSMainCurrentPageID', null, $this->controller->currentPageID()));
         }
         
@@ -124,7 +127,7 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
         // Thanks to this however, we are able to nest GridFields, and also access the initial Controller by
         // dereferencing GridFieldDetailForm_ItemRequest->getController() multiple times. See getToplevelController
         // below.
-        $form=new Form(
+        $form = new Form(
             $this,
             'ItemEditForm',
             $fields,
@@ -132,30 +135,30 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
             $this->component->getValidator()
         );
         
-        $form->loadDataFrom($this->record, ($this->record->ID==0 ? Form::MERGE_IGNORE_FALSEISH:Form::MERGE_DEFAULT));
+        $form->loadDataFrom($this->record, ($this->record->ID == 0 ? Form::MERGE_IGNORE_FALSEISH : Form::MERGE_DEFAULT));
         
-        if($this->record->ID && !$canEdit) {
+        if ($this->record->ID && !$canEdit) {
             // Restrict editing of existing records
             $form->makeReadonly();
             
             // Hack to re-enable delete button if user can delete
-            if($canDelete) {
+            if ($canDelete) {
                 $form->Actions()->fieldByName('action_doDelete')->setReadonly(false);
             }
-        }else if(!$this->record->ID && !$canCreate) {
+        } else if (!$this->record->ID && !$canCreate) {
             // Restrict creation of new records
             $form->makeReadonly();
         }
         
         // Load many_many extraData for record.
         // Fields with the correct 'ManyMany' namespace need to be added manually through getCMSFields().
-        if($list instanceof ManyManyList) {
-            $extraData=$list->getExtraData('', $this->record->ID);
-            $form->loadDataFrom(array('ManyMany' => $extraData));
+        if ($list instanceof ManyManyList) {
+            $extraData = $list->getExtraData('', $this->record->ID);
+            $form->loadDataFrom(['ManyMany' => $extraData]);
         }
         
-        $cb=$this->component->getItemEditFormCallback();
-        if($cb) {
+        $cb = $this->component->getItemEditFormCallback();
+        if ($cb) {
             $cb($form, $this);
         }
         
@@ -168,20 +171,21 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
      * @param {SS_HTTPRequest} $request Request data
      * @return {string} Rendered view form
      */
-    public function view($request) {
-        if(!$this->record->canView()) {
+    public function view($request)
+    {
+        if (!$this->record->canView()) {
             $this->httpError(403);
         }
         
-        $controller=$this->getToplevelController();
-        $form=$this->ItemEditForm($this->gridField, $request);
+        $controller = $this->getToplevelController();
+        $form = $this->ItemEditForm($this->gridField, $request);
         $form->makeReadonly();
         
         
-        return $controller->customise(array(
-                                            'Title'=>($this->record && $this->record->ID ? $this->record->Title:sprintf(_t('GridField.NewRecord', 'New %s'), $this->record->i18n_singular_name())),
-                                            'ItemEditForm'=>$form
-                                        ))->renderWith($this->template);
+        return $controller->customise([
+                                            'Title' => ($this->record && $this->record->ID ? $this->record->Title : sprintf(_t('GridField.NewRecord', 'New %s'), $this->record->i18n_singular_name())),
+                                            'ItemEditForm' => $form,
+                                        ])->renderWith($this->template);
     }
     
     /**
@@ -189,52 +193,55 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
      * @param {SS_HTTPRequest} $request Request data
      * @return {string} Rendered edit form
      */
-    public function edit($request) {
-        $controller=$this->getToplevelController();
-        $form=$this->ItemEditForm($this->gridField, $request);
+    public function edit($request)
+    {
+        $controller = $this->getToplevelController();
+        $form = $this->ItemEditForm($this->gridField, $request);
         
         
-        return $controller->customise(array(
-                                    'Title'=>($this->record && $this->record->ID ? $this->record->Title:sprintf(_t('GridField.NewRecord', 'New %s'), $this->record->i18n_singular_name())),
-                                    'ItemEditForm'=>$form,
-                                ))->renderWith($this->template);
+        return $controller->customise([
+                                    'Title' => ($this->record && $this->record->ID ? $this->record->Title : sprintf(_t('GridField.NewRecord', 'New %s'), $this->record->i18n_singular_name())),
+                                    'ItemEditForm' => $form,
+                                ])->renderWith($this->template);
     }
     
     /**
      * Disabled, the front end does not use breadcrumbs to remember the paths
      */
-    public function Breadcrumbs($unlinked = false) {
+    public function Breadcrumbs($unlinked = false)
+    {
         return;
     }
     
-    public function doSave($data, $form) {
-        $new_record=$this->record->ID == 0;
-        $controller=$this->getToplevelController();
-        $list=$this->gridField->getList();
+    public function doSave($data, $form)
+    {
+        $new_record = $this->record->ID == 0;
+        $controller = $this->getToplevelController();
+        $list = $this->gridField->getList();
 
-        if(!$this->record->canEdit()) {
+        if (!$this->record->canEdit()) {
             return $controller->httpError(403);
         }
 
-        if(isset($data['ClassName']) && $data['ClassName']!=$this->record->ClassName) {
-            $newClassName=$data['ClassName'];
+        if (isset($data['ClassName']) && $data['ClassName'] != $this->record->ClassName) {
+            $newClassName = $data['ClassName'];
             // The records originally saved attribute was overwritten by $form->saveInto($record) before.
             // This is necessary for newClassInstance() to work as expected, and trigger change detection
             // on the ClassName attribute
             $this->record->setClassName($this->record->ClassName);
             // Replace $record with a new instance
-            $this->record=$this->record->newClassInstance($newClassName);
+            $this->record = $this->record->newClassInstance($newClassName);
         }
 
         try {
             $form->saveInto($this->record);
             $this->record->write();
-            $extraData=$this->getExtraSavedData($this->record, $list);
+            $extraData = $this->getExtraSavedData($this->record, $list);
             $list->add($this->record, $extraData);
-        }catch(ValidationException $e) {
+        } catch (ValidationException $e) {
             $form->sessionMessage($e->getResult()->message(), 'bad', false);
             
-            Session::set("FormInfo.{$form->FormName()}.errors", array());
+            Session::set("FormInfo.{$form->FormName()}.errors", []);
             Session::set("FormInfo.{$form->FormName()}.data", $form->getData());
             
             return $controller->redirectBack();
@@ -242,51 +249,52 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
 
         // TODO Save this item into the given relationship
 
-        $link='<a href="'.$this->Link('edit').'">"'.htmlspecialchars($this->record->Title, ENT_QUOTES).'"</a>';
-        $message=_t(
-                    'GridFieldDetailForm.Saved',
-                    'Saved {name} {link}',
-                    array(
-                        'name'=>$this->record->i18n_singular_name(),
-                        'link'=>$link
-                    )
-                );
+        $link = '<a href="' . $this->Link('edit') . '">"' . htmlspecialchars($this->record->Title, ENT_QUOTES) . '"</a>';
+        $message = _t(
+            'GridFieldDetailForm.Saved',
+            'Saved {name} {link}',
+            [
+                        'name' => $this->record->i18n_singular_name(),
+                        'link' => $link,
+                    ]
+        );
 
         $form->sessionMessage($message, 'good', false);
 
-        if($new_record) {
+        if ($new_record) {
             return $controller->redirect($this->Link());
-        }else if($this->gridField->getList()->byId($this->record->ID)) {
+        } else if ($this->gridField->getList()->byId($this->record->ID)) {
             return $controller->redirectBack();
-        }else {
+        } else {
             // Changes to the record properties might've excluded the record from
             // a filtered list, so return back to the main view if it can't be found
-            $noActionURL=$controller->removeAction($data['url']);
+            $noActionURL = $controller->removeAction($data['url']);
             $controller->getRequest()->addHeader('X-Pjax', 'Content');
             return $controller->redirect($noActionURL, 302);
         }
     }
     
-    public function doDelete($data, $form) {
-        $title=$this->record->Title;
+    public function doDelete($data, $form)
+    {
+        $title = $this->record->Title;
         try {
-            if(!$this->record->canDelete()) {
+            if (!$this->record->canDelete()) {
                 throw new ValidationException(_t('GridFieldDetailForm.DeletePermissionsFailure', "No delete permissions"), 0);
             }
         
             $this->record->delete();
-        }catch(ValidationException $e) {
+        } catch (ValidationException $e) {
             $form->sessionMessage($e->getResult()->message(), 'bad');
             return Controller::curr()->redirectBack();
         }
         
-        $message=sprintf(_t('GridFieldDetailForm.Deleted', 'Deleted %s %s'), $this->record->i18n_singular_name(), htmlspecialchars($title, ENT_QUOTES));
+        $message = sprintf(_t('GridFieldDetailForm.Deleted', 'Deleted %s %s'), $this->record->i18n_singular_name(), htmlspecialchars($title, ENT_QUOTES));
         
-        $toplevelController=$this->getToplevelController();
-        if($toplevelController && $toplevelController instanceof LeftAndMain) {
+        $toplevelController = $this->getToplevelController();
+        if ($toplevelController && $toplevelController instanceof LeftAndMain) {
             $backForm = $toplevelController->getEditForm();
             $backForm->sessionMessage($message, 'good');
-        }else {
+        } else {
             $form->sessionMessage($message, 'good');
         }
         
@@ -294,15 +302,15 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
         //Remove all requirements
         Requirements::clear();
         
-        return $this->customise(array('GridFieldID'=>$this->gridField->ID()))->renderWith('FrontEndGridField_deleted');
+        return $this->customise(['GridFieldID' => $this->gridField->ID()])->renderWith('FrontEndGridField_deleted');
     }
     
     /**
      * Wrapper for redirectBack()
      * @see Controller::redirectBack()
      */
-    public function redirectBack() {
+    public function redirectBack()
+    {
         return Controller::curr()->redirectBack();
     }
 }
-?>
