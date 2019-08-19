@@ -1,5 +1,5 @@
 <?php
-namespace WebbuildersGroup\FrontendGridField\Forms\GridField;
+namespace WebbuildersGroup\FrontEndGridField\Forms\GridField;
 
 use SilverStripe\Admin\LeftAndMain;
 use SilverStripe\Control\Controller;
@@ -9,18 +9,18 @@ use SilverStripe\Forms\Form;
 use SilverStripe\Forms\FormAction;
 use SilverStripe\Forms\HiddenField;
 use SilverStripe\Forms\LiteralField;
-use SilverStripe\Forms\GridField\GridFieldDetailForm;
-use SilverStripe\Forms\GridField\GridFieldDetailForm_ItemRequest;
+use SilverStripe\Forms\GridField\GridFieldDetailForm as SS_GridFieldDetailForm;
+use SilverStripe\Forms\GridField\GridFieldDetailForm_ItemRequest as SS_GridFieldDetailForm_ItemRequest;
 use SilverStripe\ORM\HasManyList;
 use SilverStripe\ORM\ManyManyList;
 use SilverStripe\ORM\ValidationException;
 use SilverStripe\View\Requirements;
 
-class FrontEndGridFieldDetailForm extends GridFieldDetailForm {
+class GridFieldDetailForm extends SS_GridFieldDetailForm {
     protected $template=FrontEndGridFieldDetailForm::class;
 }
 
-class FrontEndGridFieldDetailForm_ItemRequest extends GridFieldDetailForm_ItemRequest {
+class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest {
     private static $allowed_actions=array(
                                         'view',
                                         'edit',

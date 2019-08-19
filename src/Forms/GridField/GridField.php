@@ -1,10 +1,10 @@
 <?php
-namespace WebbuildersGroup\FrontendGridField\Forms\GridField;
+namespace WebbuildersGroup\FrontEndGridField\Forms\GridField;
 
-use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridField as SS_GridField;
 use SilverStripe\View\Requirements;
 
-class FrontEndGridField extends GridField {
+class GridField extends SS_GridField {
     /**
      * Returns the whole gridfield rendered with all the attached components
      * @return string
