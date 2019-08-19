@@ -7,16 +7,22 @@
     "authors": [
         {
             "name": "Ed Chipman",
-            "homepage": "http://webbuildersgroup.com",
+            "homepage": "https://webbuildersgroup.com",
             "role": "Developer"
         }
     ],
     "require": {
-        "silverstripe/framework": "~3.1",
-        "composer/installers": "*"
+        "silverstripe/framework": "~4.3"
     },
     "extra": {
-        "installer-name": "frontendgridfield"
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        },
+        "expose": [
+            "css",
+            "images",
+            "javascript"
+        ]
     },
     "support": {
         "issues": "https://github.com/webbuilders-group/silverstripe-frontendgridfield/issues"
