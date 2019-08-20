@@ -13,14 +13,14 @@ class GridField extends SS_GridField
     public function FieldHolder($properties = [])
     {
         Requirements::block('silverstripe/admin: css/GridField.css');
-        Requirements::themedCSS(FrontEndGridField::class, FRONTEND_GRIDFIELD_BASE);
+        Requirements::css('webbuilders-group/silverstripe-frontendgridfield: css/FrontEndGridField.css');
+        Requirements::themedCSS('FrontEndGridField');
         
+        Requirements::customScript('window.ss = window.ss || {}; window.ss.config = window.ss.config || {default: {find: function() {}, getSection: function() {}}, sections: {find: function() {}, getSection: function() {}}};');
+        Requirements::javascript('silverstripe/admin: client/dist/js/i18n.js');
         Requirements::add_i18n_javascript('silverstripe/admin: javascript/lang');
-        Requirements::javascript('silverstripe/admin: jquery/jquery.js');
-        Requirements::javascript('silverstripe/admin: jquery-ui/jquery-ui.js');
-        Requirements::javascript('silverstripe/admin: javascript/ssui.core.js');
-        Requirements::javascript('silverstripe/admin: javascript/lib.js');
-        Requirements::javascript('silverstripe/admin: jquery-entwine/dist/jquery.entwine-dist.js');
+        Requirements::javascript('silverstripe/admin: client/dist/js/vendor.js');
+        Requirements::javascript('silverstripe/admin: client/dist/js/bundle.js');
         Requirements::javascript('webbuilders-group/silverstripe-frontendgridfield: javascript/FrontEndGridField.js');
         
         
