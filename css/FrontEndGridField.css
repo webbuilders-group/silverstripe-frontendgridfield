@@ -14,6 +14,10 @@ form .ss-gridfield > div.ss-gridfield-buttonrow-before {
     margin-bottom: 0;
 }
 
+form .ss-gridfield > div.ss-gridfield-buttonrow-before .action {
+    display: inline-block;
+}
+
 form .ss-gridfield > div.ss-gridfield-buttonrow-before .action,
 form .ss-gridfield > div.ss-gridfield-buttonrow-before input {
     margin-bottom: 12px;
@@ -54,7 +58,7 @@ form .ss-gridfield .right > * {
     margin-left: 8px;
 }
 
-form .ss-gridfield .right .pagination-records-number {
+form .ss-gridfield .pull-xs-right .pagination-records-number {
     font-size: 1.0em;
     padding: 6px 3px 6px 0;
     color: white;
@@ -62,11 +66,11 @@ form .ss-gridfield .right .pagination-records-number {
     font-weight: normal;
 }
 
-form .ss-gridfield .left {
+form .ss-gridfield .pull-xs-left {
     float: left;
 }
 
-form .ss-gridfield .left > * {
+form .ss-gridfield .pull-xs-left > * {
     margin-right: 8px;
     float: left;
 }
@@ -248,7 +252,6 @@ form table.grid-field__table tbody td.col-getTreeTitle span.badge.status-workflo
 form table.grid-field__table tbody td button {
     border: none;
     background: none;
-    margin: 0 0 0 2px;
     padding: 1px 0;
     width: auto;
     text-shadow: none;
@@ -279,21 +282,34 @@ form table.grid-field__table tbody td button.gridfield-button-delete span.btn-ic
 
 form table.grid-field__table tbody td a.view-link,
 form table.grid-field__table tbody td a.edit-link {
+    position: relative;
+}
+
+form table.grid-field__table tbody td a.view-link:before,
+form table.grid-field__table tbody td a.edit-link:before,
+form table.grid-field__table .action--delete:before {
     display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 0;
-    text-indent: 9999em;
-    overflow: hidden;
+    
+    width: 16px;
+    height: 16px;
+    
+    content: "";
+    
+    margin-right: 0.5em;
+    
     vertical-align: middle;
 }
 
-form table.grid-field__table tbody td a.view-link {
-    background: url(../admin/images/btn-icon/magnifier.png) no-repeat 0 1px;
+form table.grid-field__table tbody td a.view-link:before {
+    background: url(../images/btn-icon/magnifier.png) no-repeat 0 1px;
 }
 
-form table.grid-field__table tbody td a.edit-link {
-    background: url(../admin/images/btn-icon/document--pencil.png) no-repeat 2px 0px;
+form table.grid-field__table tbody td a.edit-link:before {
+    background: url(../images/btn-icon/document--pencil.png) no-repeat 2px 0px;
+}
+
+form table.grid-field__table .action--delete:before {
+    background: url(./../images/icons/cross-circle.png) no-repeat;
 }
 
 form table.grid-field__table tfoot {
@@ -341,7 +357,7 @@ form table.grid-field__table tr.sortable-header th {
     font-weight: normal;
 }
 
-form table.grid-field__table tr.sortable-header th .ss-ui-button {
+form table.grid-field__table tr.sortable-header th .btn {
     font-weight: normal;
 }
 
@@ -450,7 +466,7 @@ form table.grid-field__table tr th.extra input {
     height: 28px;
 }
 
-form table.grid-field__table tr th.extra button.ss-ui-button {
+form table.grid-field__table tr th.extra button.btn {
     padding: .3em;
     line-height: 1;
     -moz-box-shadow: none;
@@ -509,7 +525,7 @@ form table.grid-field__table tr th button.grid-field__sort.grid-field__sorted-as
     background-position: right -116px;
 }
 
-form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-filter {
+form table.grid-field__table tr th button.btn.font-icon-search {
     background-color: #55a4d2;
     border: none;
     display: block;
@@ -531,10 +547,10 @@ form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-filte
     border-top: 1px solid #4199cd;
 }
 
-form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-filter.hover-alike:active,
-form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-filter:active,
-form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-filter.hover-alike,
-form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-filter:hover {
+form table.grid-field__table tr th button.btn.font-icon-search.hover-alike:active,
+form table.grid-field__table tr th button.btn.font-icon-search:active,
+form table.grid-field__table tr th button.btn.font-icon-search.hover-alike,
+form table.grid-field__table tr th button.btn.font-icon-search:hover {
     background: url(../images/icons/filter-icons.png) no-repeat -15px 4px,
         url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzU1YTRkMiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzMzOGRjMSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
     background: url(../images/icons/filter-icons.png) no-repeat -15px 4px,
@@ -548,7 +564,7 @@ form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-filte
         linear-gradient(#55a4d2, #338dc1);
 }
 
-form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-filter.trigger {
+form table.grid-field__table tr th button.btn.font-icon-search.grid-field__filter-open {
     margin-left: 12px;
     border: none;
     background: url(../images/icons/filter-icons.png) no-repeat -17px 6px;
@@ -556,7 +572,7 @@ form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-filte
     margin: 0 6px;
 }
 
-form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-filter.trigger span {
+form table.grid-field__table tr th button.btn.font-icon-search.grid-field__filter-open span {
     opacity: 0.4;
     position: absolute;
     width: 10px;
@@ -565,18 +581,18 @@ form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-filte
     background: url(../admin/images/btn_arrow_down_grey.png) no-repeat 0px 0px;
 }
 
-form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-filter.trigger:hover {
+form table.grid-field__table tr th button.btn.font-icon-search.grid-field__filter-open:hover {
     background: url(../images/icons/filter-icons.png) no-repeat -17px -38px;
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
     box-shadow: none;
 }
 
-form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-filter.trigger:hover span {
+form table.grid-field__table tr th button.btn.font-icon-search.grid-field__filter-open:hover span {
     opacity: 0.9;
 }
 
-form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-close {
+form table.grid-field__table tr th button.btn.ss-gridfield-button-close {
     background: url(../images/icons/filter-icons.png) no-repeat 8px -17px;
     border: none;
     display: block;
@@ -588,10 +604,10 @@ form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-close
     margin-right: -5px;
 }
 
-form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-close.hover-alike:active,
-form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-close:active,
-form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-close.hover-alike,
-form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-close:hover {
+form table.grid-field__table tr th button.btn.ss-gridfield-button-close.hover-alike:active,
+form table.grid-field__table tr th button.btn.ss-gridfield-button-close:active,
+form table.grid-field__table tr th button.btn.ss-gridfield-button-close.hover-alike,
+form table.grid-field__table tr th button.btn.ss-gridfield-button-close:hover {
     opacity: 1;
     background: url(../images/icons/filter-icons.png) no-repeat 8px -17px,
         url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwLjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMC4xIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
@@ -609,7 +625,7 @@ form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-close
             rgba(255, 255, 255, 0.1));
 }
 
-form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-reset {
+form table.grid-field__table tr th button.btn.ss-gridfield-button-reset {
     border: none;
     display: block;
     text-indent: -9999em;
@@ -623,17 +639,17 @@ form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-reset
     display: none;
 }
 
-form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-reset.filtered {
+form table.grid-field__table tr th button.btn.ss-gridfield-button-reset.filtered {
     display: block;
     background: url(../admin/images/btn-icon/cross.png) no-repeat 0px 0px;
     opacity: 0.5;
 }
 
-form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-reset.filtered:hover {
+form table.grid-field__table tr th button.btn.ss-gridfield-button-reset.filtered:hover {
     opacity: 0.8;
 }
 
-form table.grid-field__table tr th button.ss-ui-button.ss-gridfield-button-reset.filtered:active {
+form table.grid-field__table tr th button.btn.ss-gridfield-button-reset.filtered:active {
     opacity: 1;
 }
 
@@ -793,27 +809,61 @@ form table.grid-field__table td.col-StripThumbnail img {
     display: block;
 }
 
-form .ss-gridfield .ui-button .ui-icon.btn-icon-add {
+form .ss-gridfield .btn, form .ss-gridfield .action {
+    position: relative;
+}
+
+form .ss-gridfield .ui-button-text {
+    display: block;
+    
+    padding: .4em 1em .4em 2.1em;
+    
+    line-height: 1.4;
+}
+
+form .ss-gridfield th.extra .ui-button-text {
+    display: inline-block;
+    
+    padding: 0;
+    
+    line-height: normal;
+}
+
+form .ss-gridfield .btn.font-icon-plus-circled:before,
+form .ss-gridfield .ui-button .ui-icon.btn-icon-chain--plus:before,
+form .ss-gridfield .ui-button .ui-icon.btn-icon-chain--minus:before,
+form .ss-gridfield-buttonrow .action_export:before {
+    display: block;
+    
+    position: absolute;
+    top: 50%;
+    left: .5em;
+    
+    content: "";
+    
+    width: 16px;
+    height: 16px;
+    
+    margin-top: -8px;
+}
+
+form .ss-gridfield .btn.font-icon-plus-circled:before {
     background: url(./../images/icons/add.png) no-repeat;
 }
 
-form table.grid-field__table .ui-button .ui-icon.btn-icon-cross-circle {
-    background: url(./../images/icons/cross-circle.png) no-repeat;
-}
-
-form .ss-gridfield .ui-button .ui-icon.btn-icon-chain--plus {
+form .ss-gridfield .ui-button .ui-icon.btn-icon-chain--plus:before {
     background: url(./../images/icons/chain--plus.png) no-repeat;
 }
 
-form .ss-gridfield .ui-button .ui-icon.btn-icon-chain--minus {
+form .ss-gridfield .ui-button .ui-icon.btn-icon-chain--minus:before {
     background: url(./../images/icons/chain--minus.png) no-repeat;
 }
 
-form .ss-gridfield-buttonrow .btn-icon-download-csv {
+form .ss-gridfield-buttonrow .action_export:before {
     background: url(./../images/icons/download-csv.png) no-repeat;
 }
 
-form table.grid-field__table tr th input.grid-field__sort {
+form table.grid-field__table tr th input.grid-field__sort-field {
     width: 100%;
     max-width: 512px;
     height: auto;
@@ -825,4 +875,242 @@ form table.grid-field__table tr th input.grid-field__sort {
 
 form table.grid-field__table thead tr.grid-field__filter-header .fieldgroup .fieldgroup-field {
     float: left;
+}
+
+form table.grid-field__table td.ss-gridfield-item.loading {
+    position: relative;
+    
+    height: 100px;
+}
+
+form .grid-field .pull-xs-right > * {
+    float: right;
+    margin-left: .6154rem;
+}
+
+form .grid-field .dropdown, form .grid-field .dropleft,
+form .grid-field .dropright, form .grid-field .dropup {
+    position: relative;
+}
+
+form .grid-field .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #43536d;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .23rem;
+    -webkit-box-shadow: 0 .5rem 1rem rgba(0,0,0,.175);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.175);
+    
+    text-align: left;
+}
+
+form .grid-field .dropdown-menu.show {
+    display: block;
+}
+
+form .grid-field .dropdown-menu-right {
+    right: 0;
+    left: auto;
+}
+
+form .grid-field .dropdown-menu[x-placement^="bottom"], form .grid-field .dropdown-menu[x-placement^="left"],
+form .grid-field .dropdown-menu[x-placement^="right"], form .grid-field .dropdown-menu[x-placement^="top"] {
+    right: auto;
+    bottom: auto;
+}
+
+form .grid-field .action-menu__dropdown .dropdown-item {
+    cursor: pointer;
+}
+
+form .grid-field .dropdown-item {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: .45rem 1.3rem;
+    clear: both;
+    font-weight: 400;
+    color: #43536d;
+    text-align: left !important;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    box-sizing: border-box;
+}
+
+form .grid-field .dropdown-item:focus, form .grid-field .dropdown-item:hover {
+    color: #43536d;
+    text-decoration: none;
+    background-color: #eef0f4;
+}
+
+form .grid-field .gridfield-actionmenu__container .action-menu__dropdown {
+    left: auto !important;
+    right: auto;
+}
+
+form .grid-field .grid-field__col-compact > * {
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+form .grid-field .gridfield-actionmenu__container {
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: inline-flex;
+    margin: -.5em 0;
+}
+
+form .grid-field .grid-field__col-compact > :last-child {
+    margin-right: 0;
+}
+
+form .grid-field .action-menu__toggle {
+    width: 1.4em;
+}
+
+form .grid-field .action-menu__toggle:before {
+    background: url(../images/btn-icon/ellipsis.png) no-repeat center center;
+    
+    display: block;
+    
+    width: 16px;
+    height: 16px;
+    
+    content: "";
+    
+    margin: 0 auto;
+}
+
+form .grid-field .action-menu__toggle .sr-only {
+    display: none;
+}
+
+form .grid-field .cms-content-loading-spinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center
+}
+
+form .grid-field .cms-content-loading-spinner .spinner {
+    width: 3rem;
+    height: 3rem;
+    padding: .5rem;
+    background-color: #fff;
+    border-radius: .192rem
+}
+
+form .grid-field .cms-content-loading-spinner .spinner__animation {
+    width: 100%;
+    height: 100%
+}
+
+form .grid-field .cms-content-loading-spinner .spinner__animation__empty {
+    fill: #8f9fba
+}
+
+form .grid-field .cms-content-loading-spinner .spinner__animation__fill {
+    fill: none;
+    stroke: #005a93;
+    stroke-width: 5;
+    stroke-dasharray: 70;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: frontgridfield__spinner__animation__keyframes 1.5s infinite cubic-bezier(.445, .05, .55, .95) forwards;
+    -o-animation: frontgridfield__spinner__animation__keyframes 1.5s infinite cubic-bezier(.445, .05, .55, .95) forwards;
+    animation: frontgridfield__spinner__animation__keyframes 1.5s infinite cubic-bezier(.445, .05, .55, .95) forwards
+}
+
+@media (-ms-high-contrast:none) {
+    form .grid-field .cms-content-loading-spinner .spinner__animation__fill {
+        -webkit-animation: frontgridfield__spinner__animation__keyframes_ie .5s alternate infinite cubic-bezier(.445, .05, .55, .95) forwards;
+        -o-animation: frontgridfield__spinner__animation__keyframes_ie .5s alternate infinite cubic-bezier(.445, .05, .55, .95) forwards;
+        animation: frontgridfield__spinner__animation__keyframes_ie .5s alternate infinite cubic-bezier(.445, .05, .55, .95) forwards
+    }
+}
+
+@-webkit-keyframes frontgridfield__spinner__animation__keyframes {
+    0% {
+        stroke-dashoffset: 140
+    }
+
+    to {
+        stroke-dashoffset: 0
+    }
+}
+
+@-o-keyframes frontgridfield__spinner__animation__keyframes {
+    0% {
+        stroke-dashoffset: 140
+    }
+
+    to {
+        stroke-dashoffset: 0
+    }
+}
+
+@keyframes frontgridfield__spinner__animation__keyframes {
+    0% {
+        stroke-dashoffset: 140
+    }
+
+    to {
+        stroke-dashoffset: 0
+    }
+}
+
+@-webkit-keyframes frontgridfield__spinner__animation__keyframes_ie {
+    0% {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@-o-keyframes frontgridfield__spinner__animation__keyframes_ie {
+    0% {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes frontgridfield__spinner__animation__keyframes_ie {
+    0% {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
 }
