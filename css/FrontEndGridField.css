@@ -1061,6 +1061,10 @@ form .grid-field .action-menu__toggle .sr-only {
     display: none;
 }
 
+form .grid-field span button.action.action_gridfield_relationfind {
+    display: none;
+}
+
 form .grid-field .cms-content-loading-spinner {
     position: absolute;
     top: 0;
