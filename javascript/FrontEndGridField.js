@@ -31,7 +31,7 @@
         });
         
         
-        $('.frontendgrid.ss-gridfield:not(.ss-gridfield-editable) .col-buttons .action.gridfield-button-delete').entwine({
+        $('.frontendgrid.ss-gridfield:not(.ss-gridfield-editable) .grid-field__col-compact .action.gridfield-button-delete').entwine({
             /**
              * Function: onclick
              */
@@ -59,7 +59,7 @@
         
         
         //Row Click
-        $('.ss-gridfield:not(.ss-gridfield-editable) .ss-gridfield-item:not(.ss-gridfield-no-items) td:not(.col-buttons)').entwine({
+        $('.ss-gridfield:not(.ss-gridfield-editable) .ss-gridfield-item:not(.ss-gridfield-no-items) td:not(.grid-field__col-compact)').entwine({
             /**
              * Function: onclick
              */
@@ -89,7 +89,7 @@
                 return false;
             }
         });
-        $('.ss-gridfield:not(.ss-gridfield-editable) .ss-gridfield-item:not(.ss-gridfield-no-items) td.col-buttons').entwine({
+        $('.ss-gridfield:not(.ss-gridfield-editable) .ss-gridfield-item:not(.ss-gridfield-no-items) td.grid-field__col-compact').entwine({
             /**
              * Function: onclick
              */

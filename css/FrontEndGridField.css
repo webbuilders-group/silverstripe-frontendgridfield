@@ -891,8 +891,8 @@ form .ss-gridfield th.extra .ui-button-text {
 }
 
 form .ss-gridfield .btn.font-icon-plus-circled:before,
-form .ss-gridfield .ui-button .ui-icon.btn-icon-chain--plus:before,
-form .ss-gridfield .ui-button .ui-icon.btn-icon-chain--minus:before,
+form .ss-gridfield .action.action_gridfield_relationadd:before,
+form .ss-gridfield .font-icon-link-broken:before,
 form .ss-gridfield-buttonrow .action_export:before {
     display: block;
     
@@ -912,11 +912,11 @@ form .ss-gridfield .btn.font-icon-plus-circled:before {
     background: url(./../images/icons/add.png) no-repeat;
 }
 
-form .ss-gridfield .ui-button .ui-icon.btn-icon-chain--plus:before {
+form .ss-gridfield .action.action_gridfield_relationadd:before {
     background: url(./../images/icons/chain--plus.png) no-repeat;
 }
 
-form .ss-gridfield .ui-button .ui-icon.btn-icon-chain--minus:before {
+form .ss-gridfield .font-icon-link-broken:before {
     background: url(./../images/icons/chain--minus.png) no-repeat;
 }
 

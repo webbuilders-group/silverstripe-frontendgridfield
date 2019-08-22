@@ -72,4 +72,13 @@ class GridField extends SS_GridField
     {
         return $this->useAdminAPI || $this->config()->use_admin_api;
     }
+    
+    /**
+     * Gets the type for this field
+     * @return string
+     */
+    public function Type()
+    {
+        return 'frontendgrid ' . parent::Type();
+    }
 }
