@@ -147,11 +147,69 @@ form table.grid-field__table thead tr.grid-field__filter-header.grid-field__sear
 }
 
 form table.grid-field__table thead tr.grid-field__filter-header .fieldgroup {
+    position: relative;
+    
+    display: flex;
+    
+    align-items: stretch;
+    
     max-width: 512px;
 }
 
 form table.grid-field__table thead tr.grid-field__filter-header .fieldgroup .fieldgroup-field {
     padding: 0;
+    
+    flex: 1 1 auto;
+}
+
+form table.grid-field__table thead tr.grid-field__filter-header .fieldgroup .fieldgroup-field > .action {
+    position: static;
+}
+
+form table.grid-field__table thead tr.grid-field__filter-header .fieldgroup .fieldgroup-field.last {
+    position: absolute;
+    right: 0;
+    top: 0;
+    
+    width: auto;
+    height: 100%;
+}
+
+form table.grid-field__table thead tr.grid-field__filter-header th:last-child .fieldgroup .fieldgroup-field.last {
+    position: static;
+    top: auto;
+    right: auto;
+}
+
+form table.grid-field__table thead tr.grid-field__filter-header button.btn.ss-gridfield-button-reset {
+    display: block;
+    
+    position: absolute;
+    top: 50%;
+    right: 0;
+    
+    padding: 0;
+    
+    opacity: 0.5;
+    
+    transform: translateY(-50%);
+    
+    border-radius: 0;
+}
+
+form table.grid-field__table thead tr.grid-field__filter-header button.btn.ss-gridfield-button-reset:hover {
+    opacity: 1;
+}
+
+form table.grid-field__table thead tr.grid-field__filter-header button.btn.ss-gridfield-button-reset:before {
+    background: url(./../images/btn-icon/cross.png) no-repeat center center;
+    
+    display: block;
+    
+    width: 100%;
+    height: 100%;
+    
+    content: "";
 }
 
 form table.grid-field__table thead tr:first-child th:first-child {
@@ -409,7 +467,6 @@ form table.grid-field__table tr th div.fieldgroup-field {
 }
 
 form table.grid-field__table tr th div.fieldgroup {
-    min-width: 200px;
     padding-right: 0;
 }
 
@@ -813,6 +870,10 @@ form .ss-gridfield .btn, form .ss-gridfield .action {
     position: relative;
 }
 
+form .ss-gridfield th.extra .action {
+    border: 0;
+}
+
 form .ss-gridfield .ui-button-text {
     display: block;
     
@@ -865,12 +926,12 @@ form .ss-gridfield-buttonrow .action_export:before {
 
 form table.grid-field__table tr th input.grid-field__sort-field {
     width: 100%;
-    max-width: 512px;
     height: auto;
     margin: 0;
     outline: none;
     border-radius: 4px;
     line-height: 16px;
+    box-sizing: border-box;
 }
 
 form table.grid-field__table thead tr.grid-field__filter-header .fieldgroup .fieldgroup-field {

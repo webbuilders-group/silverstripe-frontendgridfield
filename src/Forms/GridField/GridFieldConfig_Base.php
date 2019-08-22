@@ -17,8 +17,11 @@ class GridFieldConfig_Base extends SS_GridFieldConfig_Base
         
         $this
             ->removeComponentsByType(SS_GridFieldDetailForm::class)
-            ->removeComponentsByType(GridField_ActionMenu::class)
             ->addComponent(new GridFieldDetailForm());
+        
+        if (!GridField::config()->use_admin_api) {
+            $this->removeComponentsByType(GridField_ActionMenu::class);
+        }
         
         //Use the legacy filter header as the GraphQL/React one will not work
         $this->getComponentByType(GridFieldFilterHeader::class)->useLegacyFilterHeader = true;
