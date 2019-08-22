@@ -24,6 +24,9 @@ class GridFieldConfig_RecordViewer extends SS_GridFieldConfig_RecordViewer
         }
         
         //Use the legacy filter header as the GraphQL/React one will not work
-        $this->getComponentByType(GridFieldFilterHeader::class)->useLegacyFilterHeader = true;
+        $filterHeader = $this->getComponentByType(GridFieldFilterHeader::class);
+        if ($filterHeader) {
+            $filterHeader->useLegacyFilterHeader = true;
+        }
     }
 }
