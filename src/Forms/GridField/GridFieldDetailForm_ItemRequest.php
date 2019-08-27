@@ -54,20 +54,20 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
             if ($canEdit) {
                 $actions->push(FormAction::create('doSave', _t('GridFieldDetailForm.Save', 'Save'))
                                                 ->setUseButtonTag(true)
-                                                ->addExtraClass('ss-ui-action-constructive')
+                                                ->addExtraClass('btn-primary font-icon-save')
                                                 ->setAttribute('data-icon', 'accept'));
             }
             
             if ($canDelete) {
                 $actions->push(FormAction::create('doDelete', _t('GridFieldDetailForm.Delete', 'Delete'))
                                                 ->setUseButtonTag(true)
-                                                ->addExtraClass('ss-ui-action-destructive action-delete'));
+                                                ->addExtraClass('btn-outline-danger btn-hide-outline font-icon-trash-bin action-delete'));
             }
         } else { // adding new record
             //Change the Save label to 'Create'
             $actions->push(FormAction::create('doSave', _t('GridFieldDetailForm.Create', 'Create'))
                                             ->setUseButtonTag(true)
-                                            ->addExtraClass('ss-ui-action-constructive')
+                                            ->addExtraClass('btn-primary font-icon-plus-thin')
                                             ->setAttribute('data-icon', 'add'));
             
             // Add a Cancel link which is a button-like link and link back to one level up.
@@ -76,7 +76,7 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
                 $one_level_up = $curmbs->offsetGet($curmbs->count() - 2);
                 $text = sprintf(
                     "<a class=\"%s\" href=\"%s\">%s</a>",
-                    "crumb ss-ui-button ss-ui-action-destructive cms-panel-link ui-corner-all", // CSS classes
+                    "crumb ss-ui-button btn-outline-danger btn-hide-outline font-icon-trash-bin cms-panel-link ui-corner-all", // CSS classes
                     $one_level_up->Link, // url
                     _t('GridFieldDetailForm.CancelBtn', 'Cancel') // label
                 );
