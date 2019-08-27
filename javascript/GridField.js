@@ -496,116 +496,6 @@ $.entwine('ss', function($) {
     }
   });
 
-  /*$('.js-injector-boot .grid-field .grid-field__search-holder').entwine({
-    Component: null,
-
-    onmatch() {
-      this._super();
-
-      // Make sure this appears at the top of the gridfield
-      this.prependTo(this.parent());
-
-      const cmsContent = this.closest('.cms-content').attr('id');
-      const context = (cmsContent)
-        ? { context: cmsContent }
-        : {};
-
-      const Search = loadComponent('Search', context);
-      this.setComponent(Search);
-
-      this.refresh();
-    },
-
-    onunmatch() {
-      this._super();
-      // solves errors given by ReactDOM "no matched root found" error.
-      const container = this[0];
-      if (container) {
-        ReactDOM.unmountComponentAtNode(container);
-      }
-    },
-
-    close() {
-      const props = this.data('schema');
-
-      const ajaxData = [{
-        name: props.clearAction,
-        value: '',
-        filter: 'hidden',
-        triggerChange: false
-      }];
-
-      if (props.clearActionState) {
-        ajaxData.push({
-          name: 'ActionState',
-          value: props.clearActionState,
-        });
-      }
-
-      this.getGridField().reload({ data: ajaxData });
-    },
-
-    search(data) {
-      const props = this.data('schema');
-
-      const ajaxData = [{
-        name: props.searchAction,
-        value: '',
-        filter: 'show',
-        triggerChange: false
-      }];
-
-      if (props.searchActionState) {
-        ajaxData.push({
-          name: 'ActionState',
-          value: props.searchActionState,
-        });
-      }
-
-      for (const [key, value] of Object.entries(data)) {
-        if (value) {
-          const name = `filter[${props.gridfield}][${key}]`
-          ajaxData.push({ name, value });
-        }
-      }
-
-      this.getGridField().reload({ data: ajaxData });
-    },
-
-    refresh() {
-      const props = this.data('schema');
-      const Search = this.getComponent();
-      const handleHide = () => this.close();
-      const handleSearch = (data) => this.search(data);
-      const idName = String(props.gridfield).replace(/\-/g, '.');
-
-      ReactDOM.render(
-        <Search
-          id={`${props.gridfield}Search`}
-          display="VISIBLE"
-          displayBehavior="HIDEABLE"
-          filterPrefix="Search__"
-          onHide={handleHide}
-          onSearch={handleSearch}
-          {...props}
-        />,
-        this[0]
-      );
-    },
-  });*/
-
-  /**
-   * Stop enter from submitting the whole 'page form' and
-   * allow the search component to handle it
-   */
-  /*$('.js-injector-boot .grid-field .search-box__content-field').entwine({
-    onkeydown: function(e) {
-      if(e.key === 'Enter') {
-        e.preventDefault();
-      }
-    }
-  })*/
-
   /**
    * Catch submission event in filter input fields, and submit the correct button
    * rather than the whole form.
@@ -632,7 +522,7 @@ $.entwine('ss', function($) {
         resetbtn = this.closest('.extra').find('.ss-gridfield-button-reset');
 
       if(e.keyCode == '13') {
-        var btns = this.closest('.grid-field__filter-header').find('.ss-gridfield-button-filter');
+        var btns = this.closest('.grid-field__filter-header').find('button.ss-gridfield-button-filter');
         var filterState='show'; //filterstate should equal current state.
         if(this.hasClass('ss-gridfield-button-close')||!(this.closest('.grid-field').hasClass('show-filter'))){
           filterState='hidden';
