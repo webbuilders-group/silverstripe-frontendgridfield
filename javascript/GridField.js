@@ -309,7 +309,7 @@ $.entwine('ss', function($) {
           name: this.attr('name'),
           value: this.val(),
           filter: filterState,
-          triggerChange
+          triggerChange: triggerChange
         },
       ];
 
@@ -322,7 +322,7 @@ $.entwine('ss', function($) {
       }
 
       this.getGridField().reload(
-        { data },
+        { data: data },
         successCallback
       );
 
