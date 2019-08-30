@@ -233,7 +233,7 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
             $extraData = $this->getExtraSavedData($this->record, $list);
             $list->add($this->record, $extraData);
         } catch (ValidationException $e) {
-            $form->sessionMessage($e->getResult()->message(), 'bad', false);
+            $form->sessionMessage($e->getResult()->message(), 'bad', 'html');
             
             Session::set("FormInfo.{$form->FormName()}.errors", []);
             Session::set("FormInfo.{$form->FormName()}.data", $form->getData());
@@ -253,7 +253,7 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
                     ]
         );
 
-        $form->sessionMessage($message, 'good', false);
+        $form->sessionMessage($message, 'good', 'html');
 
         if ($new_record) {
             return $controller->redirect($this->Link());
