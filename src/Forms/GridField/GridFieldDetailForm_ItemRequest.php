@@ -13,6 +13,7 @@ use SilverStripe\Forms\GridField\GridFieldDetailForm_ItemRequest as SS_GridField
 use SilverStripe\ORM\HasManyList;
 use SilverStripe\ORM\ManyManyList;
 use SilverStripe\ORM\ValidationException;
+use SilverStripe\ORM\ValidationResult;
 use SilverStripe\View\Requirements;
 
 class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
@@ -233,7 +234,7 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
             $extraData = $this->getExtraSavedData($this->record, $list);
             $list->add($this->record, $extraData);
         } catch (ValidationException $e) {
-            $form->sessionMessage($e->getResult()->message(), 'bad', 'html');
+            $form->sessionMessage($e->getResult()->message(), ValidationResult::TYPE_ERROR, ValidationResult::CAST_HTML);
             
             Session::set("FormInfo.{$form->FormName()}.errors", []);
             Session::set("FormInfo.{$form->FormName()}.data", $form->getData());
@@ -253,7 +254,7 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
                     ]
         );
 
-        $form->sessionMessage($message, 'good', 'html');
+        $form->sessionMessage($message, ValidationResult::TYPE_GOOD, ValidationResult::CAST_HTML);
 
         if ($new_record) {
             return $controller->redirect($this->Link());
@@ -278,7 +279,7 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
         
             $this->record->delete();
         } catch (ValidationException $e) {
-            $form->sessionMessage($e->getResult()->message(), 'bad');
+            $form->sessionMessage($e->getResult()->message(), ValidationResult::TYPE_ERROR);
             return Controller::curr()->redirectBack();
         }
         
@@ -287,16 +288,16 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
         $toplevelController = $this->getToplevelController();
         if ($toplevelController && $toplevelController instanceof LeftAndMain) {
             $backForm = $toplevelController->getEditForm();
-            $backForm->sessionMessage($message, 'good');
+            $backForm->sessionMessage($message, ValidationResult::TYPE_GOOD);
         } else {
-            $form->sessionMessage($message, 'good');
+            $form->sessionMessage($message, ValidationResult::TYPE_GOOD);
         }
         
         
         //Remove all requirements
         Requirements::clear();
         
-        return $this->customise(['GridFieldID' => $this->gridField->ID()])->renderWith('FrontEndGridField_deleted');
+        return $this->customise(['GridFieldID' => $this->gridField->ID()])->renderWith(GridField::class . '_deleted');
     }
     
     /**
