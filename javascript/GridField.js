@@ -391,7 +391,7 @@ $.entwine('ss', function($) {
         buttonDisabled = $button.is(':disabled');
 
       if ((inputHasValue && buttonDisabled) || (!inputHasValue && !buttonDisabled)) {
-        $button.attr("disabled", !buttonDisabled);
+          $button.button("option", "disabled", !buttonDisabled);
       }
     }
   });
