@@ -44,6 +44,7 @@ class GridField extends SS_GridField
             Requirements::javascript('silverstripe/admin: thirdparty/jquery-entwine/dist/jquery.entwine-dist.js');
             Requirements::javascript('silverstripe/admin: client/dist/js/i18n.js');
             Requirements::add_i18n_javascript('silverstripe/admin: javascript/lang');
+            Requirements::javascript('webbuilders-group/silverstripe-frontendgridfield: javascript/externals/silverstripe/lib.js');
             Requirements::javascript('webbuilders-group/silverstripe-frontendgridfield: javascript/GridField.js');
         }
         

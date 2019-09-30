@@ -360,7 +360,7 @@ $.entwine('ss', function($) {
       // decide whether we should use ? or & to connect the URL
       var connector = grid.data('url').indexOf('?') == -1 ? '?' : '&';
 
-      return $.path.makeUrlAbsolute(
+      return jQuery.path.makeUrlAbsolute(
         grid.data('url') + connector + data,
         $('base').attr('href')
       );
