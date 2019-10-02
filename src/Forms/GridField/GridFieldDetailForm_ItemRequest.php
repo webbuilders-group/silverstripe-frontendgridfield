@@ -1,9 +1,9 @@
 <?php
 namespace WebbuildersGroup\FrontEndGridField\Forms\GridField;
 
+use const False\MyClass\true;
 use SilverStripe\Admin\LeftAndMain;
 use SilverStripe\Control\Controller;
-use SilverStripe\Control\Session;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\Form;
 use SilverStripe\Forms\FormAction;
@@ -244,7 +244,7 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
         } catch (ValidationException $e) {
             $form->setSessionValidationResult($e->getResult());
             
-            Session::set("FormInfo.{$form->FormName()}.data", $form->getData());
+            $controller->getRequest()->getSession()->set("FormInfo.{$form->FormName()}.data", $form->getData());
             
             return $controller->redirectBack();
         }
