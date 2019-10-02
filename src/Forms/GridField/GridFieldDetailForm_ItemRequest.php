@@ -1,6 +1,7 @@
 <?php
 namespace WebbuildersGroup\FrontEndGridField\Forms\GridField;
 
+use const False\MyClass\true;
 use SilverStripe\Admin\LeftAndMain;
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\Session;
@@ -34,7 +35,7 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
         
         if (empty($this->record)) {
             $controller = $this->getToplevelController();
-            $noActionURL = $controller->removeAction($_REQUEST['url']);
+            $noActionURL = $controller->removeAction($controller->getRequest()->getURL(true));
             
             $controller->getResponse()->removeHeader('Location');   //clear the existing redirect
             
@@ -174,13 +175,18 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
         
         $controller = $this->getToplevelController();
         $form = $this->ItemEditForm($this->gridField, $request);
+        
+        if (!is_a($form, Form::class)) {
+            return $form;
+        }
+        
         $form->makeReadonly();
         
         
         return $controller->customise([
-                                            'Title' => ($this->record && $this->record->ID ? $this->record->Title : sprintf(_t('GridField.NewRecord', 'New %s'), $this->record->i18n_singular_name())),
-                                            'ItemEditForm' => $form,
-                                        ])->renderWith($this->template);
+                                    'Title' => ($this->record && $this->record->exists() ? $this->record->Title : sprintf(_t('GridField.NewRecord', 'New %s'), singleton($this->gridField->getModelClass())->i18n_singular_name())),
+                                    'ItemEditForm' => $form,
+                                ])->renderWith($this->template);
     }
     
     /**
@@ -193,9 +199,12 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
         $controller = $this->getToplevelController();
         $form = $this->ItemEditForm($this->gridField, $request);
         
+        if (!is_a($form, Form::class)) {
+            return $form;
+        }
         
         return $controller->customise([
-                                    'Title' => ($this->record && $this->record->ID ? $this->record->Title : sprintf(_t('GridField.NewRecord', 'New %s'), $this->record->i18n_singular_name())),
+                                    'Title' => ($this->record && $this->record->exists() ? $this->record->Title : sprintf(_t('GridField.NewRecord', 'New %s'), singleton($this->gridField->getModelClass())->i18n_singular_name())),
                                     'ItemEditForm' => $form,
                                 ])->renderWith($this->template);
     }
@@ -249,9 +258,9 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
             'GridFieldDetailForm.Saved',
             'Saved {name} {link}',
             [
-                        'name' => $this->record->i18n_singular_name(),
-                        'link' => $link,
-                    ]
+                'name' => $this->record->i18n_singular_name(),
+                'link' => $link,
+            ]
         );
 
         $form->sessionMessage($message, ValidationResult::TYPE_GOOD, ValidationResult::CAST_HTML);
