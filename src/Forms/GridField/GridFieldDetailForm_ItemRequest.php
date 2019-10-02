@@ -242,9 +242,8 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
             $extraData = $this->getExtraSavedData($this->record, $list);
             $list->add($this->record, $extraData);
         } catch (ValidationException $e) {
-            $form->sessionMessage($e->getResult()->message(), ValidationResult::TYPE_ERROR, ValidationResult::CAST_HTML);
+            $form->setSessionValidationResult($e->getResult());
             
-            Session::set("FormInfo.{$form->FormName()}.errors", []);
             Session::set("FormInfo.{$form->FormName()}.data", $form->getData());
             
             return $controller->redirectBack();
