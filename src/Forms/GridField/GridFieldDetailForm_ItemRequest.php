@@ -1,7 +1,6 @@
 <?php
 namespace WebbuildersGroup\FrontEndGridField\Forms\GridField;
 
-use const False\MyClass\true;
 use SilverStripe\Admin\LeftAndMain;
 use SilverStripe\Control\Controller;
 use SilverStripe\Forms\FieldList;
