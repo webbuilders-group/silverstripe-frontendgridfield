@@ -427,7 +427,7 @@ form table.grid-field__table tr:first-child {
     background: transparent;
 }
 
-form table.grid-field__table tr:first-child:hover {
+form table.grid-field__table tbody tr:first-child:hover {
     background: #FFFAD6;
 }
 
