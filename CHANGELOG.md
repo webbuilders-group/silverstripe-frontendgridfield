@@ -1,9 +1,12 @@
 # Change Log
 
+## [2.0.1](https://github.com/webbuilders-group/silverstripe-frontendgridfield/tree/2.0.1) (2020-01-16)
+[Full Changelog](https://github.com/webbuilders-group/silverstripe-frontendgridfield/compare/2.0.0...2.0.1)
+
 ## [2.0.0](https://github.com/webbuilders-group/silverstripe-frontendgridfield/tree/2.0.0) (2019-10-02)
 [Full Changelog](https://github.com/webbuilders-group/silverstripe-frontendgridfield/compare/1.0.0...2.0.0)
 
-## [0.0.0](https://github.com/webbuilders-group/silverstripe-frontendgridfield/tree/1.0.0) (2017-06-16)
+## [1.0.0](https://github.com/webbuilders-group/silverstripe-frontendgridfield/tree/1.0.0) (2017-06-16)
 [Full Changelog](https://github.com/webbuilders-group/silverstripe-frontendgridfield/compare/0.3.0...1.0.0)
 
 ## [0.3.0](https://github.com/webbuilders-group/silverstripe-frontendgridfield/tree/0.3.0) (2017-03-21)
