@@ -32,7 +32,7 @@
     },
     "autoload": {
         "psr-4": {
-            "WebbuildersGroup\\FrontEndGridField\\Forms\\GridField\\": "src/WebbuildersGroup/FrontEndGridField"
+            "WebbuildersGroup\\FrontEndGridField\\": "src/WebbuildersGroup/FrontEndGridField"
         }
     }
 }
