@@ -574,10 +574,12 @@ form table.grid-field__table tr th button.grid-field__sort:hover {
     background-position: right -34px;
 }
 
+form table.grid-field__table tr th button.grid-field__sort.ss-gridfield-sorted-desc,
 form table.grid-field__table tr th button.grid-field__sort.grid-field__sorted-desc {
     background-position: right -72px;
 }
 
+form table.grid-field__table tr th button.grid-field__sort.ss-gridfield-sorted-asc,
 form table.grid-field__table tr th button.grid-field__sort.grid-field__sorted-asc {
     background-position: right -116px;
 }
