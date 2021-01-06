@@ -82,4 +82,15 @@ class GridField extends SS_GridField
     {
         return 'frontendgrid ' . parent::Type();
     }
+    
+    /**
+     * Custom Readonly transformation to remove actions which shouldn't be present for a readonly state.
+     * @return GridField
+     */
+    public function performReadonlyTransformation()
+    {
+        $this->readonlyComponents[] = GridFieldDetailForm::class;
+        
+        return parent::performReadonlyTransformation();
+    }
 }
