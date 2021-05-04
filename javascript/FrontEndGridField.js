@@ -37,7 +37,7 @@
              */
             onclick: function(e) {
                 // Confirmation on delete
-                if(!confirm(ss.i18n._t('TABLEFIELD.DELETECONFIRMMESSAGE'))) {
+                if(!confirm(ss.i18n._t('Admin.DELETECONFIRMMESSAGE', 'Are you sure you want to delete this record?'))) {
                     e.preventDefault();
                     return false;
                 }
