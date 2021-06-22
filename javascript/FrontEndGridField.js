@@ -31,7 +31,7 @@
         });
         
         
-        $('.frontendgrid.ss-gridfield:not(.ss-gridfield-editable) .grid-field__col-compact .action.gridfield-button-delete').entwine({
+        $('.frontendgrid.ss-gridfield:not(.ss-gridfield-editable) .grid-field__col-compact .action.gridfield-button-delete, .frontendgrid.ss-gridfield:not(.ss-gridfield-editable)  .col-buttons .action--delete').entwine({
             /**
              * Function: onclick
              */
