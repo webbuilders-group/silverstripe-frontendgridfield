@@ -1,7 +1,10 @@
 <?php
 namespace WebbuildersGroup\FrontEndGridField\Forms\GridField;
 
+use SilverStripe\Control\Director;
+use SilverStripe\Core\Convert;
 use SilverStripe\Forms\GridField\GridField as SS_GridField;
+use SilverStripe\Security\SecurityToken;
 use SilverStripe\View\Requirements;
 
 class GridField extends SS_GridField
