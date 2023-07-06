@@ -3,6 +3,7 @@ namespace WebbuildersGroup\FrontEndGridField\Forms\GridField;
 
 use SilverStripe\Admin\LeftAndMain;
 use SilverStripe\Control\Controller;
+use SilverStripe\Control\HTTPResponse;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\Form;
 use SilverStripe\Forms\FormAction;
@@ -316,7 +317,7 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
      * Wrapper for redirectBack()
      * @see Controller::redirectBack()
      */
-    public function redirectBack()
+    public function redirectBack(): HTTPResponse
     {
         return Controller::curr()->redirectBack();
     }
