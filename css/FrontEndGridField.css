@@ -93,9 +93,6 @@ form .ss-gridfield .add-existing-autocompleter span {
     float: left;
     display: inline-block;
     vertical-align: top;
-    *vertical-align: auto;
-    *zoom: 1;
-    *display: inline;
 }
 
 form .ss-gridfield .add-existing-autocompleter input.relation-search {
@@ -121,9 +118,6 @@ form .ss-gridfield .grid-print-button {
     display: -moz-inline-stack;
     display: inline-block;
     vertical-align: middle;
-    *vertical-align: auto;
-    *zoom: 1;
-    *display: inline;
 }
 
 form table.grid-field__table {
@@ -148,17 +142,17 @@ form table.grid-field__table thead tr.grid-field__filter-header.grid-field__sear
 
 form table.grid-field__table thead tr.grid-field__filter-header .fieldgroup {
     position: relative;
-    
+
     display: flex;
-    
+
     align-items: stretch;
-    
+
     max-width: 512px;
 }
 
 form table.grid-field__table thead tr.grid-field__filter-header .fieldgroup .fieldgroup-field {
     padding: 0;
-    
+
     flex: 1 1 auto;
 }
 
@@ -170,7 +164,7 @@ form table.grid-field__table thead tr.grid-field__filter-header .fieldgroup .fie
     position: absolute;
     right: 0;
     top: 0;
-    
+
     width: auto;
     height: 100%;
 }
@@ -183,17 +177,17 @@ form table.grid-field__table thead tr.grid-field__filter-header th:last-child .f
 
 form table.grid-field__table thead tr.grid-field__filter-header button.btn.ss-gridfield-button-reset {
     display: block;
-    
+
     position: absolute;
     top: 50%;
     right: 0;
-    
+
     padding: 0;
-    
+
     opacity: 0.5;
-    
+
     transform: translateY(-50%);
-    
+
     border-radius: 0;
 }
 
@@ -201,14 +195,14 @@ form table.grid-field__table thead tr.grid-field__filter-header button.btn.ss-gr
     opacity: 1;
 }
 
-form table.grid-field__table thead tr.grid-field__filter-header button.btn.ss-gridfield-button-reset:before {
+form table.grid-field__table thead tr.grid-field__filter-header button.btn.ss-gridfield-button-reset::before {
     background: url(./../images/btn-icon/cross.png) no-repeat center center;
-    
+
     display: block;
-    
+
     width: 100%;
     height: 100%;
-    
+
     content: "";
 }
 
@@ -343,30 +337,30 @@ form table.grid-field__table tbody td a.edit-link {
     position: relative;
 }
 
-form table.grid-field__table tbody td a.view-link:before,
-form table.grid-field__table tbody td a.edit-link:before,
-form table.grid-field__table .action--delete:before {
+form table.grid-field__table tbody td a.view-link::before,
+form table.grid-field__table tbody td a.edit-link::before,
+form table.grid-field__table .action--delete::before {
     display: inline-block;
-    
+
     width: 16px;
     height: 16px;
-    
+
     content: "";
-    
+
     margin-right: 0.5em;
-    
+
     vertical-align: middle;
 }
 
-form table.grid-field__table tbody td a.view-link:before {
+form table.grid-field__table tbody td a.view-link::before {
     background: url(../images/btn-icon/magnifier.png) no-repeat 0 1px;
 }
 
-form table.grid-field__table tbody td a.edit-link:before {
+form table.grid-field__table tbody td a.edit-link::before {
     background: url(../images/btn-icon/document--pencil.png) no-repeat 2px 0px;
 }
 
-form table.grid-field__table .action--delete:before {
+form table.grid-field__table .action--delete::before {
     background: url(./../images/icons/cross-circle.png) no-repeat;
 }
 
@@ -878,51 +872,51 @@ form .ss-gridfield th.extra .action {
 
 form .ss-gridfield .ui-button-text {
     display: block;
-    
+
     padding: .4em 1em .4em 2.1em;
-    
+
     line-height: 1.4;
 }
 
 form .ss-gridfield th.extra .ui-button-text {
     display: inline-block;
-    
+
     padding: 0;
-    
+
     line-height: normal;
 }
 
-form .ss-gridfield .btn.font-icon-plus-circled:before,
-form .ss-gridfield .action.action_gridfield_relationadd:before,
-form .ss-gridfield .font-icon-link-broken:before,
-form .ss-gridfield-buttonrow .action_export:before {
-    display: block;
-    
-    position: absolute;
-    top: 50%;
-    left: .5em;
-    
+form .ss-gridfield .btn.font-icon-plus-circled::before,
+form .ss-gridfield .action.action_gridfield_relationadd::before,
+form .ss-gridfield .font-icon-link-broken::before,
+form .ss-gridfield-buttonrow .action_export::before {
+    display: inline-block;
+
+    position: static;
+    top: auto;
+    left: auto;
+
     content: "";
-    
+
     width: 16px;
     height: 16px;
-    
-    margin-top: -8px;
+
+    vertical-align: middle;
 }
 
-form .ss-gridfield .btn.font-icon-plus-circled:before {
+form .ss-gridfield .btn.font-icon-plus-circled::before {
     background: url(./../images/icons/add.png) no-repeat;
 }
 
-form .ss-gridfield .action.action_gridfield_relationadd:before {
+form .ss-gridfield .action.action_gridfield_relationadd::before {
     background: url(./../images/icons/chain--plus.png) no-repeat;
 }
 
-form .ss-gridfield .font-icon-link-broken:before {
+form .ss-gridfield .font-icon-link-broken::before {
     background: url(./../images/icons/chain--minus.png) no-repeat;
 }
 
-form .ss-gridfield-buttonrow .action_export:before {
+form .ss-gridfield-buttonrow .action_export::before {
     background: url(./../images/icons/download-csv.png) no-repeat;
 }
 
@@ -942,7 +936,7 @@ form table.grid-field__table thead tr.grid-field__filter-header .fieldgroup .fie
 
 form table.grid-field__table td.ss-gridfield-item.loading {
     position: relative;
-    
+
     height: 100px;
 }
 
@@ -977,7 +971,7 @@ form .grid-field .dropdown-menu {
     border-radius: .23rem;
     -webkit-box-shadow: 0 .5rem 1rem rgba(0,0,0,.175);
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.175);
-    
+
     text-align: left;
 }
 
@@ -1046,16 +1040,16 @@ form .grid-field .action-menu__toggle {
     width: 1.4em;
 }
 
-form .grid-field .action-menu__toggle:before {
+form .grid-field .action-menu__toggle::before {
     background: url(../images/btn-icon/ellipsis.png) no-repeat center center;
-    
+
     display: block;
-    
+
     width: 16px;
     height: 16px;
-    
+
     content: "";
-    
+
     margin: 0 auto;
 }
 
