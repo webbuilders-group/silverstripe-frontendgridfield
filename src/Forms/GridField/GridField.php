@@ -42,9 +42,10 @@ class GridField extends SS_GridField
             Requirements::javascript('silverstripe/admin: client/dist/js/bundle.js');
             Requirements::add_i18n_javascript('silverstripe/admin: javascript/lang');
         } else {
-            Requirements::javascript('silverstripe/admin: thirdparty/jquery/jquery.js');
+            Requirements::javascript('https://code.jquery.com/jquery-3.7.0.min.js');
+            Requirements::javascript('https://code.jquery.com/jquery-migrate-1.4.1.min.js');
             Requirements::javascript('silverstripe/admin: thirdparty/jquery-ui/jquery-ui.js');
-            Requirements::javascript('silverstripe/admin: thirdparty/jquery-entwine/dist/jquery.entwine-dist.js');
+            Requirements::javascript('webbuilders-group/silverstripe-frontendgridfield: javascript/externals/hafriedlander/jquery-entwine/jquery.entwine-dist.js');
             Requirements::javascript('silverstripe/admin: client/dist/js/i18n.js');
             Requirements::add_i18n_javascript('silverstripe/admin: javascript/lang');
             Requirements::javascript('webbuilders-group/silverstripe-frontendgridfield: javascript/externals/silverstripe/lib.js');
