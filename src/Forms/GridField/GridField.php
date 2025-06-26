@@ -25,6 +25,7 @@ class GridField extends SS_GridField
     public function FieldHolder($properties = [])
     {
         Requirements::block('silverstripe/admin: css/GridField.css');
+        Requirements::css('silverstripe/admin: thirdparty/jquery-ui-themes/smoothness/jquery-ui.min.css');
         Requirements::css('webbuilders-group/silverstripe-frontendgridfield: css/FrontEndGridField.css');
         Requirements::themedCSS('FrontEndGridField');
 

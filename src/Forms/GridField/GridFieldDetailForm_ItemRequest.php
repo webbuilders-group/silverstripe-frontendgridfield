@@ -4,6 +4,8 @@ namespace WebbuildersGroup\FrontEndGridField\Forms\GridField;
 use SilverStripe\Admin\LeftAndMain;
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\HTTPResponse;
+use SilverStripe\Core\Validation\ValidationException;
+use SilverStripe\Core\Validation\ValidationResult;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\Form;
 use SilverStripe\Forms\FormAction;
@@ -12,8 +14,6 @@ use SilverStripe\Forms\HiddenField;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\ORM\HasManyList;
 use SilverStripe\ORM\ManyManyList;
-use SilverStripe\ORM\ValidationException;
-use SilverStripe\ORM\ValidationResult;
 use SilverStripe\View\Requirements;
 
 class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
@@ -257,7 +257,7 @@ class GridFieldDetailForm_ItemRequest extends SS_GridFieldDetailForm_ItemRequest
 
         // TODO Save this item into the given relationship
 
-        $link = '<a href="' . $this->Link('edit') . '">"' . htmlspecialchars($this->record->Title, ENT_QUOTES) . '"</a>';
+        $link = '<a href="' . $this->Link('edit') . '">"' . htmlspecialchars($this->record->Title ?? '', ENT_QUOTES) . '"</a>';
         $message = _t(
             'GridFieldDetailForm.Saved',
             'Saved {name} {link}',

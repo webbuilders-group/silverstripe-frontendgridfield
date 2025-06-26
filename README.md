@@ -6,7 +6,7 @@ Wraps gridfield adding support for using it on the front-end of a site.
 * Ed Chipman ([UndefinedOffset](https://github.com/UndefinedOffset))
 
 ## Requirements
-* SilverStripe Framework 4.3+|5.0+
+* SilverStripe Framework ~6.0
 
 
 ## Installation
@@ -16,4 +16,4 @@ Wraps gridfield adding support for using it on the front-end of a site.
 
 
 ## Usage
-Instead of using the GridField class you need to use FrontEndGridField for use on the front-end, note it is not recommended to be used in the CMS. As well instead of using the GridFieldConfig extensions provided with SilverStripe use FrontEndGridFieldConfig_Base, FrontEndGridFieldConfig_RecordEditor, FrontEndGridFieldConfig_RecordViewer, or FrontEndGridFieldConfig_RelationEditor. If you are building your own GridField config ensure that you use FrontEndGridFieldDetailForm instead of GridFieldDetailForm.  
+Instead of using the GridField class you need to use FrontEndGridField for use on the front-end, note it is not recommended to be used in the CMS. As well instead of using the GridFieldConfig extensions provided with SilverStripe use FrontEndGridFieldConfig_Base, FrontEndGridFieldConfig_RecordEditor, FrontEndGridFieldConfig_RecordViewer, or FrontEndGridFieldConfig_RelationEditor. If you are building your own GridField config ensure that you use FrontEndGridFieldDetailForm instead of GridFieldDetailForm.
